@@ -10,7 +10,10 @@ import PageLoader from './modules/common/PageLoader';
 // Routes
 const AuthLayout = lazy(() => import('./modules/auth/layout/MainLayout'));
 const LoginPage = lazy(() => import('./modules/public/login/LoginPage'));
+const ApprovalPage = lazy(() => import('./modules/public/approval/ApprovalPage'));
+const ImplementorPage = lazy(() => import('./modules/public/implementor/ImplementorPage'));
 const NoMatchPage = lazy(() => import('./modules/not-found/NoMatchPage'));
+
 
 const Routes = () => {
   return (
@@ -31,6 +34,8 @@ const Routes = () => {
             return <AuthLayout {...props} />;
           }}
         />
+        <Route path="/approval" component={ApprovalPage} />
+        <Route path="/implementor" component={ImplementorPage} />
         <Route component={NoMatchPage} />
       </Switch>
     </Suspense>

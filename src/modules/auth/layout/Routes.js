@@ -5,7 +5,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
 /* Auth Pages Starts Here */
-const UserPage = lazy(() => import('../user/UserPage'));
+const TaskList = lazy(() => import('../user/TaskList'));
 
 /* Auth Pages Ends Here */
 
@@ -28,8 +28,8 @@ const Routes = ({ match, location }) => (
   <Transition>
     <CSSTransition key={location.key} classNames="fade" timeout={300}>
       <Switch>
-        <Route exact path={`${match.url}`} component={UserPage} />
-        <Route exact path={`${match.url}/user`} component={UserPage} />
+        <Route exact path={`${match.url}`} component={TaskList} />
+        <Route exact path={`${match.url}/user`} component={TaskList} />
       </Switch>
     </CSSTransition>
   </Transition>

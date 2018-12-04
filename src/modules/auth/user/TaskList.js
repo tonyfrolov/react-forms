@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 });
 
-class NestedList extends React.Component {
+class TaskList extends React.Component {
   state = { listItems: [] };
 
   componentDidMount() {
@@ -35,12 +35,9 @@ class NestedList extends React.Component {
     const { listItems } = this.state;
 
     return (
-      <List
-        subheader={<ListSubheader component="div">ВТБ</ListSubheader>}
-        className={classes.root}
-      >
-        {listItems.map(({ item }) => (
-          <ListItem button>
+      <List subheader={<ListSubheader component="div">ВТБ</ListSubheader>} className={classes.root}>
+        {listItems.map(({ item, id }) => (
+          <ListItem key={id} button>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
@@ -52,8 +49,8 @@ class NestedList extends React.Component {
   }
 }
 
-NestedList.propTypes = {
+TaskList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(NestedList);
+export default withStyles(styles)(TaskList);
