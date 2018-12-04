@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import SingleSelect from './SingleSelect'
 // import TextField from '@material-ui/core/TextField/TextField';
 // import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
 
@@ -51,6 +52,7 @@ class ImplementorPage extends React.Component {
       <Container>
         <Button>Implementor Page</Button>
         <form className={classes.container}>
+          <SingleSelect />
           <Button
             component={Link}
             to="/approval"

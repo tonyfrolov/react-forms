@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import StarBorder from '@material-ui/icons/StarBorder';
+import { Link } from 'react-router-dom';
 // import axios from 'axios';
 // import { connect } from 'react-redux';
 
@@ -37,7 +38,7 @@ class TaskList extends React.Component {
     return (
       <List subheader={<ListSubheader component="div">ВТБ</ListSubheader>} className={classes.root}>
         {listItems.map(({ item, id }) => (
-          <ListItem key={id} button>
+          <ListItem key={id} button to="/implementor" component={Link}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
