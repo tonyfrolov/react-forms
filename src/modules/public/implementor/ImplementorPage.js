@@ -4,8 +4,8 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import SingleSelect from './SingleSelect'
-// import TextField from '@material-ui/core/TextField/TextField';
+import Typography from '@material-ui/core/Typography';
+import SingleSelect from './SingleSelect';
 // import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
 
 const Container = styled.section`
@@ -14,7 +14,7 @@ const Container = styled.section`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ccc;
+  background-color: #e9ecef;
 `;
 
 const styles = theme => ({
@@ -44,15 +44,21 @@ const styles = theme => ({
 });
 
 class ImplementorPage extends React.Component {
-  state = {};
+  state = { users: [] };
+
+  componentDidMount() {}
 
   render() {
     const { classes } = this.props;
+    const { users } = this.state;
+
     return (
       <Container>
-        <Button>Implementor Page</Button>
+        <Typography component="h4" variant="h4">
+          Implementor Page
+        </Typography>
         <form className={classes.container}>
-          <SingleSelect />
+          <SingleSelect users={users} />
           <Button
             component={Link}
             to="/approval"

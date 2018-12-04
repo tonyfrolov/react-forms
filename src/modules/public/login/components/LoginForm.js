@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // Material UI
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -24,23 +24,27 @@ const styles = theme => ({
     textAlign: 'center',
     marginTop: theme.margin * 2,
   },
+  input: {
+    marginBottom: '25px',
+  },
 });
 
 const LoginForm = ({ value, isLoading, onChange, onSubmit, classes }) => {
   const isFormEnabled = Object.values(value).every(item => item !== '');
   return (
     <form className={classes.container} onSubmit={onSubmit}>
-      <TextField
+      <InputBase
+        className={classes.input}
         label="Username"
         value={value.username}
         name="username"
         onChange={onChange}
-        margin="normal"
         fullWidth
         autoFocus
         autoComplete="off"
       />
-      <TextField
+      <InputBase
+        className={classes.input}
         label="Password"
         value={value.password}
         name="password"
@@ -51,7 +55,7 @@ const LoginForm = ({ value, isLoading, onChange, onSubmit, classes }) => {
       />
       <Button
         onClick={onSubmit}
-        variant="outlined"
+        variant="contained"
         color="primary"
         fullWidth
         className={classes.button}
