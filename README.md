@@ -21,8 +21,7 @@ Webapp Was Built In:
  How to start on PM2 [This is specific if you serve your files on a linux server where a NodeJS application is deployed as a server serving the .js files
 
 ```
- npm i
- node_modules/.bin/webpack --config webpack.prod.config.js --colors --progress
- node server
- PORT=8082 pm2 start server --name "app-name-to-deploy"
+yarn install     // install dependecies
+
+yarn start       // start webpack devserver
 ```
