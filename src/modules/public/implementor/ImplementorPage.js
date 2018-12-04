@@ -46,7 +46,11 @@ const styles = theme => ({
 class ImplementorPage extends React.Component {
   state = { users: [] };
 
-  componentDidMount() {}
+  componentDidMount() {
+    fetch('/jsonDatas/users.json')
+      .then(res => res.json())
+      .then(json => this.setState({ users: json }));
+  }
 
   render() {
     const { classes } = this.props;

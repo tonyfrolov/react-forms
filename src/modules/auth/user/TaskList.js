@@ -23,21 +23,21 @@ const styles = theme => ({
 });
 
 class TaskList extends React.Component {
-  state = { listItems: [] };
+  state = { taskItems: [] };
 
   componentDidMount() {
-    fetch('/jsonDatas/jsonData.json')
+    fetch('/jsonDatas/tasks.json')
       .then(res => res.json())
-      .then(json => this.setState({ listItems: json }));
+      .then(json => this.setState({ taskItems: json }));
   }
 
   render() {
     const { classes } = this.props;
-    const { listItems } = this.state;
+    const { taskItems } = this.state;
 
     return (
       <List subheader={<ListSubheader component="div">ВТБ</ListSubheader>} className={classes.root}>
-        {listItems.map(({ item, id }) => (
+        {taskItems.map(({ item, id }) => (
           <ListItem key={id} button to="/implementor" component={Link}>
             <ListItemIcon>
               <StarBorder />

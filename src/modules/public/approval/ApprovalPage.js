@@ -35,13 +35,18 @@ const styles = theme => ({
 });
 
 class ApprovalPage extends React.Component {
-  state = {};
+  state = { guys: [] };
 
   componentDidMount() {
+    fetch('/jsonDatas/guys.json')
+      .then(res => res.json())
+      .then(json => this.setState({ guys: json }));
   }
 
   render() {
     const { classes } = this.props;
+    const { guys } = this.state;
+
     return (
       <Container>
         <form className={classes.container}>
