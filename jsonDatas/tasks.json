@@ -1,8 +1,8 @@
 [
-  { "item": "Item1", "id": "1" },
-  { "item": "Item2", "id": "2" },
-  { "item": "Item3", "id": "3" },
-  { "item": "Item4", "id": "4" },
-  { "item": "Item5", "id": "5" },
-  { "item": "Item6", "id": "6" }
+  { "item": "Задача11111111111", "id": "1", "completed": true },
+  { "item": "Задача22222222222", "id": "2", "completed": true },
+  { "item": "Задача33333333333", "id": "3", "completed": true },
+  { "item": "Задача44444444444", "id": "4", "completed": false },
+  { "item": "Задача55555555555", "id": "5", "completed": false },
+  { "item": "Задача66666666666", "id": "6", "completed": true }
 ]
