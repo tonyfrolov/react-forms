@@ -12,6 +12,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputBase from '@material-ui/core/es/InputBase/InputBase';
 import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/es/Typography';
 
 const Container = styled.section`
   display: flex;
@@ -24,14 +25,21 @@ const Container = styled.section`
 
 const styles = theme => ({
   container: {
+    display: 'block',
     backgroundColor: '#fff',
     padding: `${theme.margin * 1.5}px ${theme.margin}px`,
     width: 450,
     borderRadius: 6,
     margin: '0 auto',
   },
-  buttonContainer: {
-    flexDirection: 'row',
+  header: {
+    borderBottom: '1px solid black',
+    marginBottom: '15px',
+  },
+  formControls: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
 });
 
@@ -51,33 +59,34 @@ class ApprovalPage extends React.Component {
     return (
       <Container>
         <form className={classes.container}>
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Выберите</FormLabel>
-            <FormGroup>
-              <FormControlLabel control={<Checkbox />} label="Чувак 1" />
-              <FormControlLabel control={<Checkbox />} label="Чувак 2" />
-              <FormControlLabel control={<Checkbox />} label="Чувак 3" />
-            </FormGroup>
-            <FormHelperText>Подсказка</FormHelperText>
+          <Typography className={classes.header} variant="h3">
+            Название задачи
+          </Typography>
+          <legend>Выберите исполнителя для обработки запроса</legend>
+          <FormControl className={classes.formControls}>
+            <FormControlLabel control={<Checkbox />} label="Чувак 1" />
+            <FormControlLabel control={<Checkbox />} label="Чувак 2" />
+            <FormControlLabel control={<Checkbox />} label="Чувак 3" />
+            {/*<span>Подсказка</span>*/}
           </FormControl>
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Введите что-нибудь</FormLabel>
-            <InputBase
-              id="filled-multiline-static"
-              label="Multiline"
-              multiline
-              rows="4"
-              defaultValue="Default Value"
-              margin="normal"
-              variant="filled"
-            />
-          </FormControl>
-          <FormControl className={classes.buttonContainer}>
-            <Button variant="contained" color="primary">
-              Cancel
-            </Button>
+          {/*<fieldset>*/}
+          {/*<legend>Решение</legend>*/}
+          {/*<InputBase*/}
+          {/*id="filled-multiline-static"*/}
+          {/*label="Multiline"*/}
+          {/*multiline*/}
+          {/*rows="4"*/}
+          {/*defaultValue="Default Value"*/}
+          {/*margin="normal"*/}
+          {/*variant="filled"*/}
+          {/*/>*/}
+          {/*</fieldset>*/}
+          <FormControl className={classes.formControls}>
+            {/*<Button variant="contained" color="primary">*/}
+            {/*Cancel*/}
+            {/*</Button>*/}
             <Button component={Link} to="/auth" variant="contained" color="primary">
-              Ok
+              Выбрать
             </Button>
           </FormControl>
         </form>
