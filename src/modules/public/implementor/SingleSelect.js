@@ -18,7 +18,7 @@ const styles = theme => ({
 class SimpleSelect extends React.Component {
   state = {
     implementor: '',
-    name: '',
+    // name: '',
   };
 
   handleChange = event => {
@@ -26,7 +26,10 @@ class SimpleSelect extends React.Component {
   };
 
   render() {
-    const { classes, users } = this.props;
+    const {
+      classes,
+      // users
+    } = this.props;
     // рендерить список элементов меню из массива users
     const { implementor } = this.state;
 

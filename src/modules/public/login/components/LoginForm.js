@@ -13,10 +13,12 @@ import FormHeading from './FormHeading';
 const styles = theme => ({
   container: {
     backgroundColor: '#fff',
+    boxShadow: '0 0 3px #ccc',
     padding: `${theme.margin * 1.5}px ${theme.margin}px`,
     width: 450,
     borderRadius: 6,
     margin: '0 auto',
+    marginTop: '125px',
   },
   button: {
     borderColor: theme.palette.primary.main,

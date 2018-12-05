@@ -10,9 +10,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { APP_TOKEN } from '../../../api/Constants';
 // Components
 import LoginForm from './components/LoginForm';
-import logo from '../../../static/images/logo-vtb.svg';
+import VtbHeader from '../../common/VtbHeader';
 
-const FormContainer = styled.section`
+const Container = styled.section`
   height: 100vh;
   background-color: #e9ecef;
 `;
@@ -95,10 +95,8 @@ class LoginPage extends Component {
   render() {
     const { form, isLoading, isSnackbarOpen, snackbarMessage } = this.state;
     return (
-      <FormContainer>
-        <Header>
-          <img src={logo} alt="logo" width="90" />
-        </Header>
+      <Container>
+        <VtbHeader />
         <LoginForm
           value={form}
           isLoading={isLoading}
@@ -116,7 +114,7 @@ class LoginPage extends Component {
           }}
           message={<span id="message-id">{snackbarMessage}</span>}
         />
-      </FormContainer>
+      </Container>
     );
   }
 }

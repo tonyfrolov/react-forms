@@ -14,7 +14,6 @@ const ApprovalPage = lazy(() => import('./modules/public/approval/ApprovalPage')
 const ImplementorPage = lazy(() => import('./modules/public/implementor/ImplementorPage'));
 const NoMatchPage = lazy(() => import('./modules/not-found/NoMatchPage'));
 
-
 const Routes = () => {
   return (
     <Suspense fallback={<PageLoader />}>
