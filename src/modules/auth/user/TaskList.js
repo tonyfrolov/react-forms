@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 const ListContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 15px;
 `;
 
@@ -39,8 +39,13 @@ const styles = theme => ({
   },
 });
 
-const renderListItem = (item, id) => (
-  <ListItem style={{borderBottom: '1px solid #eee'}} key={id} button to="/implementor" component={Link}>
+const renderListItem = (item, id, ) => (
+  <ListItem
+    key={id}
+    button
+    to="/implementor"
+    component={Link}
+  >
     <ListItemText primary={item} />
   </ListItem>
 );
@@ -83,8 +88,7 @@ class TaskList extends React.Component {
             </ListSubheader>
           }
           className={classes.root}
-        >
-        </List>
+        />
 
         <List
           subheader={
@@ -104,8 +108,7 @@ class TaskList extends React.Component {
             </ListSubheader>
           }
           className={classes.root}
-        >
-        </List>
+        />
       </ListContainer>
     );
   }
