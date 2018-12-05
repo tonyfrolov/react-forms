@@ -65,7 +65,7 @@ class ImplementorPage extends React.Component {
           <SingleSelect users={users} />
           <Button
             component={Link}
-            to="/approval"
+            to="/auth"
             variant="contained"
             color="primary"
             className={classes.button}

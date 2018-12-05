@@ -39,13 +39,8 @@ const styles = theme => ({
   },
 });
 
-const renderListItem = (item, id, ) => (
-  <ListItem
-    key={id}
-    button
-    to="/implementor"
-    component={Link}
-  >
+const renderListItem = (item, id, location) => (
+  <ListItem key={id} button to={`${location}`} component={Link}>
     <ListItemText primary={item} />
   </ListItem>
 );
@@ -74,18 +69,18 @@ class TaskList extends React.Component {
           subheader={
             <ListSubheader className={classes.subheader} component="div">
               Новые задачи
-            </ListSubheader>
+</ListSubheader>
           }
           className={classes.root}
         >
-          {tasksIncompleted.map(({ item, id }) => renderListItem(item, id))}
+          {tasksIncompleted.map(({ item, id }) => renderListItem(item, id, 'implementor'))}
         </List>
 
         <List
           subheader={
             <ListSubheader className={classes.subheader} component="div">
               Исполняются
-            </ListSubheader>
+</ListSubheader>
           }
           className={classes.root}
         />
@@ -94,18 +89,18 @@ class TaskList extends React.Component {
           subheader={
             <ListSubheader className={classes.subheader} component="div">
               Завершенные
-            </ListSubheader>
+</ListSubheader>
           }
           className={classes.root}
         >
-          {tasksCompleted.map(({ item, id }) => renderListItem(item, id))}
+          {tasksCompleted.map(({ item, id }) => renderListItem(item, id, 'approval'))}
         </List>
 
         <List
           subheader={
             <ListSubheader className={classes.subheader} component="div">
               Отложенные
-            </ListSubheader>
+</ListSubheader>
           }
           className={classes.root}
         />

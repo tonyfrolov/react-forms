@@ -11,6 +11,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import InputBase from '@material-ui/core/es/InputBase/InputBase';
+import { Link } from 'react-router-dom';
 
 const Container = styled.section`
   display: flex;
@@ -75,7 +76,7 @@ class ApprovalPage extends React.Component {
             <Button variant="contained" color="primary">
               Cancel
             </Button>
-            <Button variant="contained" color="primary">
+            <Button component={Link} to="/auth" variant="contained" color="primary">
               Ok
             </Button>
           </FormControl>
