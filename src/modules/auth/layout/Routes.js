@@ -6,11 +6,9 @@ import styled from 'styled-components';
 
 /* Auth Pages Starts Here */
 const TaskList = lazy(() => import('../user/TaskList'));
-// const ApprovalPage = lazy(() => import('../modules/public/approval/ApprovalPage'));
-// const ImplementorPage = lazy(() => import('../modules/public/implementor/ImplementorPage'));
-const ApprovalPage = lazy(() => import('../../'));
-const ImplementorPage = lazy(() => import('./modules/public/implementor/ImplementorPage'));
 
+// const ApprovalPage = lazy(() => import('../../public/approval/ApprovalPage'));
+// const ImplementorPage = lazy(() => import('../../public/implementor/ImplementorPage'));
 
 /* Auth Pages Ends Here */
 
@@ -35,8 +33,6 @@ const Routes = ({ match, location }) => (
       <Switch>
         <Route exact path={`${match.url}`} component={TaskList} />
         <Route exact path={`${match.url}/user`} component={TaskList} />
-        <Route path="/approval" component={ApprovalPage} />
-        <Route path="/implementor" component={ImplementorPage} />
       </Switch>
     </CSSTransition>
   </Transition>

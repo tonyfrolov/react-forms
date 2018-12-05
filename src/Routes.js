@@ -33,8 +33,8 @@ const Routes = () => {
             return <AuthLayout {...props} />;
           }}
         />
-        {/*<Route path="/approval" component={ApprovalPage} />*/}
-        {/*<Route path="/implementor" component={ImplementorPage} />*/}
+        <Route path="/approval" component={ApprovalPage} />
+        <Route path="/implementor" component={ImplementorPage} />
         <Route component={NoMatchPage} />
       </Switch>
     </Suspense>
