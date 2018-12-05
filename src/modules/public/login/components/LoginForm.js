@@ -5,8 +5,10 @@ import PropTypes from 'prop-types';
 // Material UI
 import { withStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
+import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import FormHeading from './FormHeading';
 
 const styles = theme => ({
   container: {
@@ -20,6 +22,9 @@ const styles = theme => ({
     borderColor: theme.palette.primary.main,
     marginTop: theme.margin,
   },
+  buttonDisabled: {
+    border: 'none',
+  },
   forgotContainer: {
     textAlign: 'center',
     marginTop: theme.margin * 2,
@@ -27,15 +32,24 @@ const styles = theme => ({
   input: {
     marginBottom: '25px',
   },
+  inputLabel: {
+    fontSize: '18px',
+    marginBottom: '5px',
+  },
 });
 
 const LoginForm = ({ value, isLoading, onChange, onSubmit, classes }) => {
   const isFormEnabled = Object.values(value).every(item => item !== '');
   return (
     <form className={classes.container} onSubmit={onSubmit}>
+      <FormHeading />
+      <InputLabel shrink htmlFor="username" className={classes.inputLabel}>
+        Имя пользователя
+      </InputLabel>
       <InputBase
         className={classes.input}
         label="Username"
+        id="username"
         value={value.username}
         name="username"
         onChange={onChange}
@@ -43,9 +57,13 @@ const LoginForm = ({ value, isLoading, onChange, onSubmit, classes }) => {
         autoFocus
         autoComplete="off"
       />
+      <InputLabel shrink htmlFor="password" className={classes.inputLabel}>
+        Пароль
+      </InputLabel>
       <InputBase
         className={classes.input}
         label="Password"
+        id="password"
         value={value.password}
         name="password"
         onChange={onChange}
@@ -58,11 +76,11 @@ const LoginForm = ({ value, isLoading, onChange, onSubmit, classes }) => {
         variant="contained"
         color="primary"
         fullWidth
-        className={classes.button}
+        className={!isFormEnabled ? `${classes.buttonDisabled} ${classes.button}` : classes.button}
         disabled={!isFormEnabled}
         type="submit"
       >
-        {isLoading ? <CircularProgress size={20} /> : 'Login'}
+        {isLoading ? <CircularProgress size={20} /> : 'Войти'}
       </Button>
       {/* <p className={classes.forgotContainer}>
         <Link to="/" >Forgot Password?</Link>

@@ -30,6 +30,15 @@ module.exports = env => {
                 'css-loader',
                 'sass-loader'
               ]
+            },
+            {
+              test: /\.(png|jpg|gif|svg)$/,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: {}
+                }
+              ]
             }
           ]
         },
@@ -38,7 +47,7 @@ module.exports = env => {
             template: './src/index.html',
             filename: './index.html'
           }),
-          new webpack.DefinePlugin({ 
+          new webpack.DefinePlugin({
             'process.env.VERSION': JSON.stringify(env.VERSION),
             'process.env.PLATFORM': JSON.stringify(env.PLATFORM)
           }),
