@@ -8,7 +8,7 @@ import InputBase from '@material-ui/core/InputBase';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import FormHeading from './FormHeading';
+// import FormHeading from './FormHeading';
 
 const styles = theme => ({
   container: {
@@ -18,7 +18,6 @@ const styles = theme => ({
     width: 450,
     borderRadius: 6,
     margin: '0 auto',
-    marginTop: '125px',
   },
   button: {
     borderColor: theme.palette.primary.main,
@@ -44,7 +43,6 @@ const LoginForm = ({ value, isLoading, onChange, onSubmit, classes }) => {
   const isFormEnabled = Object.values(value).every(item => item !== '');
   return (
     <form className={classes.container} onSubmit={onSubmit}>
-      <FormHeading />
       <InputLabel shrink htmlFor="username" className={classes.inputLabel}>
         Имя пользователя
       </InputLabel>

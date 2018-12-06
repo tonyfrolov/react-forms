@@ -6,9 +6,10 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { APP_TOKEN } from './api/Constants';
 // Utils
 import PageLoader from './modules/common/PageLoader';
+import VtbHeader from './modules/common/VtbHeader';
 
 // Routes
-const AuthLayout = lazy(() => import('./modules/auth/layout/MainLayout'));
+const Account = lazy(() => import('./modules/auth/layout/Account'));
 const LoginPage = lazy(() => import('./modules/public/login/LoginPage'));
 const ApprovalPage = lazy(() => import('./modules/public/approval/ApprovalPage'));
 const ImplementorPage = lazy(() => import('./modules/public/implementor/ImplementorPage'));
@@ -17,6 +18,8 @@ const NoMatchPage = lazy(() => import('./modules/not-found/NoMatchPage'));
 const Routes = () => {
   return (
     <Suspense fallback={<PageLoader />}>
+      {/* Обернуть руты в компонент с header и container'ом где будут рендериться странички */}
+      <VtbHeader />
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/login" />} />
         <Route
@@ -30,7 +33,7 @@ const Routes = () => {
           path="/auth"
           render={props => {
             // return APP_TOKEN.notEmpty ? <AuthLayout {...props} /> : <Redirect to="/login" />;
-            return <AuthLayout {...props} />;
+            return <Account {...props} />;
           }}
         />
         <Route path="/approval" component={ApprovalPage} />

@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+// import { Switch, Route } from 'react-router-dom';
 
 // Common Components
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 // Routes
 import styled from 'styled-components';
-import Routes from './Routes';
+// import Routes from './Routes';
 
-import VtbHeader from '../../common/VtbHeader';
+// import VtbHeader from '../../common/VtbHeader';
+import TaskList from '../user/TaskList';
+// import PageLoader from '../../common/PageLoader';
 
 const ListContainer = styled.div`
   display: flex;
@@ -27,25 +29,24 @@ const styles = () => ({
   },
 });
 
-const MainLayout = ({ classes }) => {
+const Account = ({ classes }) => {
   return (
     <div className={classes.root}>
-      <VtbHeader />
       <ListContainer>
         <Typography color="primary" variant="h4" gutterBottom>
           Мои задачи
         </Typography>
+        <TaskList />
       </ListContainer>
-      <Route render={props => <Routes {...props} />} />
     </div>
   );
 };
 
-MainLayout.displayName = 'AuthLayout';
+Account.displayName = 'Account';
 
-MainLayout.propTypes = {
+Account.propTypes = {
   classes: PropTypes.object, // Material UI Injected;
   history: PropTypes.object, // React Router Injected;
 };
 
-export default withStyles(styles)(MainLayout);
+export default withStyles(styles)(Account);

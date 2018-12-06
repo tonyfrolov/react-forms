@@ -69,41 +69,22 @@ class TaskList extends React.Component {
           subheader={
             <ListSubheader className={classes.subheader} component="div">
               Новые задачи
-</ListSubheader>
+            </ListSubheader>
           }
           className={classes.root}
         >
           {tasksIncompleted.map(({ item, id }) => renderListItem(item, id, 'implementor'))}
         </List>
-
-        <List
-          subheader={
-            <ListSubheader className={classes.subheader} component="div">
-              Исполняются
-</ListSubheader>
-          }
-          className={classes.root}
-        />
-
         <List
           subheader={
             <ListSubheader className={classes.subheader} component="div">
               Завершенные
-</ListSubheader>
+            </ListSubheader>
           }
           className={classes.root}
         >
           {tasksCompleted.map(({ item, id }) => renderListItem(item, id, 'approval'))}
         </List>
-
-        <List
-          subheader={
-            <ListSubheader className={classes.subheader} component="div">
-              Отложенные
-</ListSubheader>
-          }
-          className={classes.root}
-        />
       </ListContainer>
     );
   }

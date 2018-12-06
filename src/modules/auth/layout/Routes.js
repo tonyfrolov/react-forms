@@ -1,14 +1,8 @@
-import React, { lazy } from 'react';
-import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
 /* Auth Pages Starts Here */
-const TaskList = lazy(() => import('../user/TaskList'));
-
-// const ApprovalPage = lazy(() => import('../../public/approval/ApprovalPage'));
-// const ImplementorPage = lazy(() => import('../../public/implementor/ImplementorPage'));
 
 /* Auth Pages Ends Here */
 
@@ -27,20 +21,11 @@ const Transition = styled(TransitionGroup)`
   }
 `;
 
-const Routes = ({ match, location }) => (
+const Routes = ({ location }) => (
   <Transition>
     <CSSTransition key={location.key} classNames="fade" timeout={300}>
-      <Switch>
-        <Route exact path={`${match.url}`} component={TaskList} />
-        <Route exact path={`${match.url}/user`} component={TaskList} />
-      </Switch>
     </CSSTransition>
   </Transition>
 );
-
-Routes.propTypes = {
-  match: PropTypes.object, // React Router Injected;
-  location: PropTypes.object, // React Router Injected;
-};
 
 export default Routes;

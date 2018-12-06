@@ -10,20 +10,10 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { APP_TOKEN } from '../../../api/Constants';
 // Components
 import LoginForm from './components/LoginForm';
-import VtbHeader from '../../common/VtbHeader';
 
 const Container = styled.section`
   height: 100vh;
   background-color: #e9ecef;
-`;
-
-const Header = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 100px;
-  margin-bottom: 125px;
-  padding-left: 25px;
-  background-color: #fff;
 `;
 
 class LoginPage extends Component {
@@ -96,7 +86,6 @@ class LoginPage extends Component {
     const { form, isLoading, isSnackbarOpen, snackbarMessage } = this.state;
     return (
       <Container>
-        <VtbHeader />
         <LoginForm
           value={form}
           isLoading={isLoading}
