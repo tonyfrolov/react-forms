@@ -10,7 +10,7 @@ const PARAMS = ({ methodType = 'GET' }) => ({
 
 export default {
   onLogin: async ({ cancelToken, ...payload }) => {
-    const URL = `${c.API_CONSUMER}/colleague/auth/login`;
+    const URL = `${c.API_CONSUMER}/colleague/account/login`;
     try {
       const { data } = await axios(
         URL,

@@ -13,14 +13,14 @@ const Container = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
 `;
 
 const styles = theme => ({
   container: {
     backgroundColor: '#fff',
     padding: `${theme.margin * 1.5}px ${theme.margin}px`,
-    width: 450,
+    width: '70vw',
+    height: '88vh',
     borderRadius: 6,
     margin: '0 auto',
   },
@@ -44,6 +44,7 @@ const styles = theme => ({
     color: '#002882',
     fontWeight: 'bold',
     textAlign: 'center',
+    borderBottom: '1px solid #002882',
   },
 });
 
@@ -62,19 +63,19 @@ class ImplementorPage extends React.Component {
 
     return (
       <Container>
-        <Typography variant="display1" gutterBottom className={classes.heading}>
-          Implementor Page
-        </Typography>
         <form className={classes.container}>
+          <Typography variant="display1" gutterBottom className={classes.heading}>
+            Название задачи
+          </Typography>
           <SingleSelect users={users} />
           <Button
             component={Link}
-            to="/auth"
+            to="/account"
             variant="contained"
             color="primary"
             className={classes.button}
           >
-            Go next
+            Утвердить
           </Button>
         </form>
       </Container>

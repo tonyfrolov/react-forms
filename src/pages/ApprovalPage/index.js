@@ -18,6 +18,8 @@ const Container = styled.section`
   margin-top: 100px;
 `;
 
+// const Legend = styled.legend`margin`;
+
 const styles = theme => ({
   container: {
     display: 'block',
@@ -37,7 +39,7 @@ const styles = theme => ({
     fontWeight: 'bold',
     textAlign: 'center',
     borderBottom: '1px solid #002882',
-    marginBottom: '15px',
+    marginBottom: '25px',
   },
 });
 
@@ -68,7 +70,7 @@ class ApprovalPage extends React.Component {
             <FormControlLabel control={<Checkbox />} label="Чувак 3" />
           </FormControl>
           <FormControl className={classes.formControls}>
-            <Button component={Link} to="/auth" variant="contained" color="primary">
+            <Button component={Link} to="/account" variant="contained" color="primary">
               Выбрать
             </Button>
           </FormControl>

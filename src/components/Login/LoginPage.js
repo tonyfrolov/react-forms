@@ -62,7 +62,7 @@ class LoginPage extends Component {
         token: '',
         refreshToken: '',
       });
-      history.push('/auth');
+      history.push('/account');
     } catch (error) {
       if (axios.isCancel(error)) {
         // console.log('Request canceled', error.message);

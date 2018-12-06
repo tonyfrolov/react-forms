@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import MiniCard from './MiniCard';
 
 // import axios from 'axios';
 // import { connect } from 'react-redux';
@@ -21,7 +22,7 @@ const ListContainer = styled.div`
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 450,
+    maxWidth: 600,
     boxShadow: '0 2px 2px #bbb',
     borderRadius: '8px',
     backgroundColor: theme.palette.background.paper,
@@ -38,11 +39,15 @@ const styles = theme => ({
     color: '#002884',
     fontWeight: 'bold',
   },
+  listItem: {
+    height: '100px',
+  },
 });
 
-const renderListItem = (item, id, location) => (
-  <ListItem key={id} button to={`${location}`} component={Link}>
-    <ListItemText primary={item} />
+const renderListItem = ({ item, id, location, classes }) => (
+  <ListItem className={classes.listItem} key={id} button to={`${location}`} component={Link}>
+    {/* <ListItemText primary={item} /> */}
+    <MiniCard />
   </ListItem>
 );
 
@@ -74,7 +79,9 @@ class TaskList extends React.Component {
           }
           className={classes.root}
         >
-          {tasksIncompleted.map(({ item, id }) => renderListItem(item, id, 'implementor'))}
+          {tasksIncompleted.map(({ item, id }) =>
+            renderListItem({ item, id, location: 'implementor', classes }),
+          )}
         </List>
         <List
           subheader={
@@ -84,7 +91,9 @@ class TaskList extends React.Component {
           }
           className={classes.root}
         >
-          {tasksCompleted.map(({ item, id }) => renderListItem(item, id, 'approval'))}
+          {tasksCompleted.map(({ item, id }) =>
+            renderListItem({ item, id, location: 'approval', classes }),
+          )}
         </List>
       </ListContainer>
     );

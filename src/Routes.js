@@ -23,11 +23,11 @@ const Routes = () => {
           exact
           path="/login"
           render={props => {
-            return APP_TOKEN.notEmpty ? <Redirect to="/auth" /> : <LoginPage {...props} />;
+            return APP_TOKEN.notEmpty ? <Redirect to="/account" /> : <LoginPage {...props} />;
           }}
         />
         <Route
-          path="/auth"
+          path="/account"
           render={props => {
             // return APP_TOKEN.notEmpty ? <AuthLayout {...props} /> : <Redirect to="/login" />;
             return <Account {...props} />;
