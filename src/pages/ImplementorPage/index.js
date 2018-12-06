@@ -40,6 +40,11 @@ const styles = theme => ({
     marginTop: theme.margin * 2,
     marginBottom: theme.margin,
   },
+  heading: {
+    color: '#002882',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });
 
 class ImplementorPage extends React.Component {
@@ -57,7 +62,7 @@ class ImplementorPage extends React.Component {
 
     return (
       <Container>
-        <Typography component="h4" variant="h4">
+        <Typography variant="display1" gutterBottom className={classes.heading}>
           Implementor Page
         </Typography>
         <form className={classes.container}>

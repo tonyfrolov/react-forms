@@ -27,14 +27,17 @@ const styles = theme => ({
     borderRadius: 6,
     margin: '0 auto',
   },
-  header: {
-    borderBottom: '1px solid black',
-    marginBottom: '15px',
-  },
   formControls: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+  },
+  heading: {
+    color: '#002882',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    borderBottom: '1px solid #002882',
+    marginBottom: '15px',
   },
 });
 
@@ -54,7 +57,7 @@ class ApprovalPage extends React.Component {
     return (
       <Container>
         <form className={classes.container}>
-          <Typography className={classes.header} variant="h3">
+          <Typography variant="display1" gutterBottom className={classes.heading}>
             Название задачи
             {/* Получаем значение выбранной задачи из redux state */}
           </Typography>

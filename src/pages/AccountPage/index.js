@@ -31,13 +31,18 @@ const styles = () => ({
   header: {
     marginBottom: '40px',
   },
+  heading: {
+    color: '#002882',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });
 
 const Account = ({ classes }) => {
   return (
     <div className={classes.root}>
       <ListContainer>
-        <Typography className={classes.header} color="primary" variant="h4" gutterBottom>
+        <Typography variant="display1" gutterBottom className={classes.heading}>
           Мои задачи
         </Typography>
         <TaskList />
