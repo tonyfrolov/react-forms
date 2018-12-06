@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import Snackbar from '@material-ui/core/Snackbar';
 
 // API
-import { APP_TOKEN } from '../../../api/Constants';
+import { APP_TOKEN } from '../../api/Constants';
 // Components
 import LoginForm from './components/LoginForm';
 

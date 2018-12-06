@@ -10,7 +10,7 @@ import styled from 'styled-components';
 // import Routes from './Routes';
 
 // import VtbHeader from '../../common/VtbHeader';
-import TaskList from '../user/TaskList';
+import TaskList from './TaskList';
 // import PageLoader from '../../common/PageLoader';
 
 const ListContainer = styled.div`

@@ -5,15 +5,15 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 // Helpers
 import { APP_TOKEN } from './api/Constants';
 // Utils
-import PageLoader from './modules/common/PageLoader';
-import VtbHeader from './modules/common/VtbHeader';
+import PageLoader from './components/PageLoader';
+import VtbHeader from './components/VtbHeader';
 
 // Routes
-const Account = lazy(() => import('./modules/auth/layout/Account'));
-const LoginPage = lazy(() => import('./modules/public/login/LoginPage'));
-const ApprovalPage = lazy(() => import('./modules/public/approval/ApprovalPage'));
-const ImplementorPage = lazy(() => import('./modules/public/implementor/ImplementorPage'));
-const NoMatchPage = lazy(() => import('./modules/not-found/NoMatchPage'));
+const Account = lazy(() => import('./components/Account'));
+const LoginPage = lazy(() => import('./components/Login/LoginPage'));
+const ApprovalPage = lazy(() => import('./components/ApprovalPage'));
+const ImplementorPage = lazy(() => import('./components/ImplementorPage'));
+const NoMatchPage = lazy(() => import('./components/not-found/NoMatchPage'));
 
 const Routes = () => {
   return (

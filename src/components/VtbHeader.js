@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import UserNav from '../UserNav';
-import logo from '../../static/images/logo-vtb.svg';
+import UserNav from './UserNav';
+import logo from '../static/images/logo-vtb.svg';
 
 const Header = styled.div`
   display: flex;
