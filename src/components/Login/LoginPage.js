@@ -12,8 +12,9 @@ import { APP_TOKEN } from '../../api/Constants';
 import LoginForm from './components/LoginForm';
 
 const Container = styled.section`
-  height: 100vh;
-  background-color: #e9ecef;
+  display: flex;
+  flex-direction: row;
+  margin-top: 120px;
 `;
 
 class LoginPage extends Component {

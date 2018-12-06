@@ -6,20 +6,17 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { APP_TOKEN } from './api/Constants';
 // Utils
 import PageLoader from './components/PageLoader';
-import VtbHeader from './components/VtbHeader';
 
 // Routes
-const Account = lazy(() => import('./components/Account'));
+const Account = lazy(() => import('./pages/AccountPage/'));
 const LoginPage = lazy(() => import('./components/Login/LoginPage'));
-const ApprovalPage = lazy(() => import('./components/ApprovalPage'));
-const ImplementorPage = lazy(() => import('./components/ImplementorPage'));
-const NoMatchPage = lazy(() => import('./components/not-found/NoMatchPage'));
+const ApprovalPage = lazy(() => import('./pages/ApprovalPage/'));
+const ImplementorPage = lazy(() => import('./pages/ImplementorPage/'));
+const NoMatchPage = lazy(() => import('./pages/NotFound/NoMatchPage'));
 
 const Routes = () => {
   return (
     <Suspense fallback={<PageLoader />}>
-      {/* Обернуть руты в компонент с header и container'ом где будут рендериться странички */}
-      <VtbHeader />
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/login" />} />
         <Route

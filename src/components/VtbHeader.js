@@ -10,7 +10,7 @@ const Header = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100vw;
-  height: 100px;
+  height: 12vh;
   padding-left: 25px;
   padding-right: 25px;
   background-color: #fff;
@@ -22,14 +22,18 @@ margin-left auto;
 `;
 
 const VtbHeader = () => {
+  const fullName = 'Васильев Василий Васильевич';
   return (
     <Header>
       <a style={{ display: 'block' }} href="/" title="ВТБ лого">
         <img src={logo} alt="vtb-logo" width="85" />
       </a>
 
-      <UserNavContainer>
-        <UserNav />
+      <UserNavContainer
+      // style={{ display: isLogged ? 'block' : 'none' }}
+      >
+        {/* достаем из redux полное имя */}
+        <UserNav fullName={fullName} />
       </UserNavContainer>
     </Header>
   );

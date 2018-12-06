@@ -10,22 +10,26 @@ import styled from 'styled-components';
 // import Routes from './Routes';
 
 // import VtbHeader from '../../common/VtbHeader';
-import TaskList from './TaskList';
+import TaskList from '../../components/TaskList';
 // import PageLoader from '../../common/PageLoader';
 
 const ListContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
   padding: 15px;
 `;
 
 const styles = () => ({
   root: {
     flexGrow: 1,
-    height: '100vh',
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
+    marginTop: '20px',
+  },
+  header: {
+    marginBottom: '40px',
   },
 });
 
@@ -33,7 +37,7 @@ const Account = ({ classes }) => {
   return (
     <div className={classes.root}>
       <ListContainer>
-        <Typography color="primary" variant="h4" gutterBottom>
+        <Typography className={classes.header} color="primary" variant="h4" gutterBottom>
           Мои задачи
         </Typography>
         <TaskList />

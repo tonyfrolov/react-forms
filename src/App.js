@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 // Routes
-import Routes from './Routes';
+import Wrapper from './Wrapper';
 
 // Material UI Theme Customization
 import Theme from './styles/muiTheme';
@@ -19,7 +19,7 @@ const App = () => {
     <MuiThemeProvider theme={THEME}>
       <Provider store={STORE}>
         <Router>
-          <Routes />
+          <Wrapper />
         </Router>
       </Provider>
     </MuiThemeProvider>

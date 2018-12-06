@@ -13,14 +13,15 @@ import { Link } from 'react-router-dom';
 
 const ListContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 15px;
+  width: 100vw;
 `;
 
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 300,
+    maxWidth: 450,
     boxShadow: '0 2px 2px #bbb',
     borderRadius: '8px',
     backgroundColor: theme.palette.background.paper,

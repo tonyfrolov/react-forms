@@ -29,7 +29,7 @@ class UserNav extends React.Component {
         <AvatarLink href="#" title="avatar">
           {/* <img src="#" alt="avatar" /> */}
         </AvatarLink>
-        <UserName>{fullName} Васильев Василий Васильевич</UserName>
+        <UserName>{fullName}</UserName>
       </Container>
     );
   }

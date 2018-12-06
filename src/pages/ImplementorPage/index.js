@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import SingleSelect from './SingleSelect';
+import SingleSelect from '../../components/SingleSelect';
 // import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
 
 const Container = styled.section`
@@ -13,8 +13,7 @@ const Container = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #e9ecef;
+  margin-top: 100px;
 `;
 
 const styles = theme => ({

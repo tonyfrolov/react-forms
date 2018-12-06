@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   user: [],
   dummy: '',
+  fullName: 'Антон Михайлович Фролов',
 };
 
 export default function(state = initialState, action = { type: '' }) {
