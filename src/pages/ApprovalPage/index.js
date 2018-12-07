@@ -28,7 +28,7 @@ class ApprovalPage extends React.Component {
     const { guys } = this.state;
     return (
       <>
-        <legend>Выберите согласующего для решения:</legend>
+        <legend style={{ marginBottom: '10px' }}>Выберите согласующего для решения:</legend>
         {guys.map(({ userName, appointment, id }) => (
           <label key={id}>
             <MenuItem>
@@ -59,10 +59,10 @@ class ApprovalPage extends React.Component {
               Запрос на кредит
               {/* Получаем значение выбранной задачи из redux state */}
             </Typography>
-            <p>
+            <p style={{ marginBottom: '20px' }}>
               <Lorem amount={5} />
             </p>
-            <label>
+            <label style={{ marginBottom: '20px' }}>
               Решение:
               <InputBase
                 className={classes.input}
@@ -77,9 +77,17 @@ class ApprovalPage extends React.Component {
             </label>
           </FormControl>
           <FormControl>{this.renderList()}</FormControl>
-          <Button component={Link} to="/account" variant="contained" color="primary">
-            Выбрать
-          </Button>
+          <FormControl style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+            <Button
+              style={{ width: '50%' }}
+              component={Link}
+              to="/account"
+              variant="contained"
+              color="primary"
+            >
+              Выбрать
+            </Button>
+          </FormControl>
         </form>
       </Container>
     );
