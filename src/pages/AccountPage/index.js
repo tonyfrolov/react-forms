@@ -1,42 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Switch, Route } from 'react-router-dom';
-
-// Common Components
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-// Routes
-import styled from 'styled-components';
-// import Routes from './Routes';
-
-// import VtbHeader from '../../common/VtbHeader';
 import TaskList from '../../components/TaskList';
-// import PageLoader from '../../common/PageLoader';
-
-const ListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-`;
-
-const styles = () => ({
-  root: {
-    flexGrow: 1,
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    marginTop: '20px',
-  },
-  header: {
-    marginBottom: '40px',
-  },
-  heading: {
-    color: '#002882',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+import styles, { ListContainer } from './style';
 
 const Account = ({ classes }) => {
   return (

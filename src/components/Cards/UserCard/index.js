@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import { CardContainer, ItemContainer } from '../MiniCard';
+import { CardContainer, ItemContainer } from '../MiniCard/style';
 
 const Header = styled.div`
   display: flex;

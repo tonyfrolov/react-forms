@@ -5,26 +5,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 
 import Radio from '@material-ui/core/Radio';
-import UserCard from './Cards/UserCard';
-
-const styles = theme => ({
-  formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 150,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing.unit * 2,
-  },
-  menuItem: {
-    display: 'flex',
-    height: '40px',
-    width: '350px',
-  },
-});
+import UserCard from '../Cards/UserCard';
+import styles from './style';
 
 class SelectionControls extends React.Component {
   state = {
-    selectedValue: 'a',
+    selectedValue: '',
   };
 
   handleChange = event => {
@@ -36,12 +22,12 @@ class SelectionControls extends React.Component {
     const { selectedValue } = this.state;
 
     return users.map(({ userName, appointment, id }) => (
-      <label>
+      <label key={id}>
         <MenuItem className={classes.menuItem} value="Вася">
           <Radio
-            checked={selectedValue === 'a'}
+            checked={selectedValue === id}
             onChange={this.handleChange}
-            value="a"
+            value={id}
             name="radio-button-demo"
             aria-label="A"
           />
