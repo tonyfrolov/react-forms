@@ -5,14 +5,13 @@ import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 import FormControl from '@material-ui/core/FormControl';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/es/Typography';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
-// import Radio from '@material-ui/core/Radio/Radio';
 import InputBase from '@material-ui/core/InputBase/InputBase';
 import UserCard from '../../components/Cards/UserCard';
+import Loader from '../../components/PageLoader';
 
 const Container = styled.section`
   display: flex;
@@ -48,17 +47,36 @@ const styles = theme => ({
 });
 
 class ApprovalPage extends React.Component {
-  // state = { guys: [] };
+  state = { guys: [], loading: true };
 
-  // componentDidMount() {
-  //   fetch('/jsonDatas/guys.json')
-  //     .then(res => res.json())
-  //     .then(json => this.setState({ guys: json }));
-  // }
+  componentDidMount() {
+    fetch('/jsonDatas/guys.json')
+      .then(res => res.json())
+      .then(json => this.setState({ guys: json, loading: false }));
+  }
+
+  renderList = () => {
+    const { guys } = this.state;
+    return (
+      <>
+        <legend>Выберите согласующего для решения:</legend>
+        {guys.map(({ userName, appointment, id }) => (
+          <label>
+            <MenuItem>
+              <Checkbox />
+              <UserCard userName={userName} id={id} appointment={appointment} />
+            </MenuItem>
+          </label>
+        ))}
+      </>
+    );
+  };
 
   render() {
     const { classes } = this.props;
-    // const { guys } = this.state;
+    const { guys, loading } = this.state;
+
+    if (loading) return <Loader />;
 
     return (
       <Container>
@@ -91,31 +109,13 @@ class ApprovalPage extends React.Component {
                 multiline
                 rows={3}
                 name="username"
-                // onChange={onChange}
                 fullWidth
                 autoFocus
                 autoComplete="off"
               />
             </label>
-            <legend>Выберите исполнителя для обработки запроса</legend>
-            <label>
-              <MenuItem className={classes.menuItem} value="Вася">
-                <Checkbox />
-                <UserCard userName="Вася Васильевич Васильев" appointment="Директор" />
-              </MenuItem>
-            </label>
-            <label>
-              <MenuItem className={classes.menuItem} value="Петя">
-                <Checkbox />
-                <UserCard userName="Петя Петрович Петров" appointment="Менеджер" />
-              </MenuItem>
-            </label>
-            <label>
-              <MenuItem className={classes.menuItem} value="Сережка">
-                <Checkbox />
-                <UserCard userName="Сережка Сергеевич Сержов" appointment="Дизайнер" />
-              </MenuItem>
-            </label>
+
+            {this.renderList()}
           </FormControl>
           <FormControl className={classes.formControls}>
             <Button component={Link} to="/account" variant="contained" color="primary">

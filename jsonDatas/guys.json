@@ -1,8 +1,8 @@
 [
-  { "item": "Item1", "id": "1" },
-  { "item": "Item2", "id": "2" },
-  { "item": "Item3", "id": "3" },
-  { "item": "Item4", "id": "4" },
-  { "item": "Item5", "id": "5" },
-  { "item": "Item6", "id": "6" }
+  { "userName": "userName1", "id": "1", "appointment": "Физрук" },
+  { "userName": "userName2", "id": "2", "appointment": "Физрук" },
+  { "userName": "userName3", "id": "3", "appointment": "Почтальон" },
+  { "userName": "userName4", "id": "4", "appointment": "Писатель" },
+  { "userName": "userName5", "id": "5", "appointment": "Летчик" },
+  { "userName": "userName6", "id": "6", "appointment": "Парашутист" }
 ]

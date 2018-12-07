@@ -31,56 +31,33 @@ class SelectionControls extends React.Component {
     this.setState({ selectedValue: event.target.value });
   };
 
-  render() {
-    const {
-      classes,
-      // users
-    } = this.props;
-    // рендерить список элементов меню из массива users
-
+  renderItems = () => {
+    const { users, classes } = this.props;
     const { selectedValue } = this.state;
+
+    return users.map(({ userName, appointment, id }) => (
+      <label>
+        <MenuItem className={classes.menuItem} value="Вася">
+          <Radio
+            checked={selectedValue === 'a'}
+            onChange={this.handleChange}
+            value="a"
+            name="radio-button-demo"
+            aria-label="A"
+          />
+          <UserCard id={id} userName={userName} appointment={appointment} />
+        </MenuItem>
+      </label>
+    ));
+  };
+
+  render() {
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
         <legend>Выберите исполнителя, который будет обрабатывать запрос.</legend>
-        <FormControl className={classes.formControl}>
-          <label>
-            <MenuItem className={classes.menuItem} value="Вася">
-              <Radio
-                checked={selectedValue === 'a'}
-                onChange={this.handleChange}
-                value="a"
-                name="radio-button-demo"
-                aria-label="A"
-              />
-              <UserCard userName="Вася Васильевич Васильев" appointment="Директор" />
-            </MenuItem>
-          </label>
-          <label>
-            <MenuItem className={classes.menuItem} value="Петя">
-              <Radio
-                checked={selectedValue === 'b'}
-                onChange={this.handleChange}
-                value="b"
-                name="radio-button-demo"
-                aria-label="B"
-              />
-              <UserCard userName="Петя Петрович Петров" appointment="Менеджер" />
-            </MenuItem>
-          </label>
-          <label>
-            <MenuItem className={classes.menuItem} value="Сережка">
-              <Radio
-                checked={selectedValue === 'c'}
-                onChange={this.handleChange}
-                value="c"
-                name="radio-button-demo"
-                aria-label="C"
-              />
-              <UserCard userName="Сережка Сергеевич Сержов" appointment="Дизайнер" />
-            </MenuItem>
-          </label>
-        </FormControl>
+        <FormControl className={classes.formControl}>{this.renderItems()}</FormControl>
       </div>
     );
   }
@@ -88,6 +65,7 @@ class SelectionControls extends React.Component {
 
 SelectionControls.propTypes = {
   classes: PropTypes.object.isRequired,
+  users: PropTypes.array,
 };
 
 export default withStyles(styles)(SelectionControls);

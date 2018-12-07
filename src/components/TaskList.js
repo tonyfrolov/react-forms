@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-// import ListItemText from '@material-ui/core/ListItemText';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import MiniCard from './Cards/MiniCard';
@@ -47,7 +46,6 @@ const styles = theme => ({
 
 const renderListItem = ({ item, id, location, classes }) => (
   <ListItem className={classes.listItem} key={id} button to={location} component={Link}>
-    {/* <ListItemText primary={item} /> */}
     <MiniCard />
   </ListItem>
 );
