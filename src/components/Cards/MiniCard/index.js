@@ -2,35 +2,36 @@ import React from 'react';
 import styled from 'styled-components';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-const ItemContainer = styled.div`
+export const ItemContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
 
-const ListItem = styled.span`
+export const ListItem = styled.span`
   color: #6c757d;
   margin-right: 15px;
   vertical-align: baseline;
 `;
 
-const CardContainer = styled.div`
+export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const CardHeader = styled.div`
+export const CardHeader = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 15px;
 `;
 
-const CardHeaderItem = styled.div`
+export const CardHeaderItem = styled.div`
   margin-right: 10px;
 `;
 
 const MiniCard = () => {
   const fullName = 'Василий Васильевич Васильев';
+  const date = new Date().toLocaleString('ru');
   return (
     <CardContainer>
       <CardHeader>
@@ -44,8 +45,8 @@ const MiniCard = () => {
         </CardHeaderItem>
       </CardHeader>
       <ItemContainer>
-        <ListItem>Client strategy</ListItem>
-        <ListItem>{new Date().toLocaleString('ru')}</ListItem>
+        <ListItem>Стратегия клиента</ListItem>
+        <ListItem>{date}</ListItem>
         <ListItem>{fullName}</ListItem>
       </ItemContainer>
     </CardContainer>

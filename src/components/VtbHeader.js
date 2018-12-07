@@ -29,10 +29,7 @@ const VtbHeader = () => {
         <img src={logo} alt="vtb-logo" width="85" />
       </a>
 
-      <UserNavContainer
-      // style={{ display: isLogged ? 'block' : 'none' }}
-      >
-        {/* достаем из redux полное имя */}
+      <UserNavContainer>
         <UserNav fullName={fullName} />
       </UserNavContainer>
     </Header>

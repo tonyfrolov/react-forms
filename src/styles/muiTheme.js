@@ -143,7 +143,11 @@ export default {
     MuiInput: {
       root: {},
       input: {},
-      underline: {},
+      underline: {
+        '&:after': {
+          borderBottom: '0',
+        },
+      },
     },
     MuiSelect: {
       root: {},
@@ -219,7 +223,9 @@ export default {
     MuiInput: {
       disableUnderline: false,
     },
-    MuiSelect: {},
+    MuiSelect: {
+      disableUnderline: false,
+    },
     MuiInputBase: {
       disableUnderline: false,
     },

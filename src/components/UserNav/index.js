@@ -5,6 +5,8 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   align-items: center;
+  transition: all 0.5s;
+  padding: 10px;
 `;
 
 const AvatarLink = styled.a`
@@ -12,28 +14,35 @@ const AvatarLink = styled.a`
   width: 50px;
   height: 50px;
   margin-right: 10px;
-  border: 2px solid #002884;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  border: 2px solid #002882;
   border-radius: 50%;
   background-color: #eee;
+  transition: all 0.3s;
+
+  &:hover {
+    text-decoration: none;
+    color: #002882;
+  }
 `;
 
 const UserName = styled.span`
   display: inline-block;
 `;
 
-class UserNav extends React.Component {
-  render() {
-    const { fullName } = this.props;
-    return (
-      <Container>
-        <AvatarLink href="#" title="avatar">
-          {/* <img src="#" alt="avatar" /> */}
-        </AvatarLink>
-        <UserName>{fullName}</UserName>
-      </Container>
-    );
-  }
-}
+const UserNav = props => {
+  const { fullName } = props;
+  return (
+    <Container>
+      <AvatarLink href="#" title="avatar">
+        {/* <img src="#" alt="avatar" /> */}В
+      </AvatarLink>
+      <UserName>{fullName}</UserName>
+    </Container>
+  );
+};
 
 UserNav.propTypes = {
   fullName: PropTypes.string,

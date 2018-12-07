@@ -10,7 +10,6 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    // height: '100vh',
     margin: theme.spacing.unit * 5,
   },
 });

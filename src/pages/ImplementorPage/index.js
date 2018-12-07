@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import SingleSelect from '../../components/SingleSelect';
+import SelectionControls from '../../components/SelectionControls';
 // import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
 
 const Container = styled.section`
@@ -65,9 +65,9 @@ class ImplementorPage extends React.Component {
       <Container>
         <form className={classes.container}>
           <Typography variant="display1" gutterBottom className={classes.heading}>
-            Название задачи
+            ООО "Ромашка" - Заявка на кредит
           </Typography>
-          <SingleSelect users={users} />
+          <SelectionControls users={users} />
           <Button
             component={Link}
             to="/account"
@@ -75,7 +75,7 @@ class ImplementorPage extends React.Component {
             color="primary"
             className={classes.button}
           >
-            Утвердить
+            Выбрать
           </Button>
         </form>
       </Container>
