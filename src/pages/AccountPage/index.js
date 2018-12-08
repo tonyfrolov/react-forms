@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import TaskList from '../../components/TaskList';
 import styles, { ListContainer } from './style';
 
-const Account = ({ classes }) => {
+const AccountPage = ({ classes }) => {
   return (
     <div className={classes.root}>
       <ListContainer>
@@ -18,11 +18,11 @@ const Account = ({ classes }) => {
   );
 };
 
-Account.displayName = 'Account';
+AccountPage.displayName = 'AccountPage';
 
-Account.propTypes = {
+AccountPage.propTypes = {
   classes: PropTypes.object, // Material UI Injected;
   history: PropTypes.object, // React Router Injected;
 };
 
-export default withStyles(styles)(Account);
+export default withStyles(styles)(AccountPage);

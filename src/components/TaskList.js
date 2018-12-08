@@ -91,7 +91,7 @@ class TaskList extends React.Component {
           className={classes.root}
         >
           {tasksCompleted.map(({ item, id }) =>
-            renderListItem({ item, id, location: 'approval', classes }),
+            renderListItem({ item, id, location: 'preparation', classes }),
           )}
         </List>
       </ListContainer>

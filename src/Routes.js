@@ -8,11 +8,12 @@ import { APP_TOKEN } from './api/Constants';
 import PageLoader from './components/PageLoader';
 
 // Routes
-const Account = lazy(() => import('./pages/AccountPage/'));
+const AccountPage = lazy(() => import('./pages/AccountPage/'));
 const LoginPage = lazy(() => import('./components/Login/LoginPage'));
-const ApprovalPage = lazy(() => import('./pages/ApprovalPage/'));
+const DecisionPreparePage = lazy(() => import('./pages/DecisionPreparePage/'));
 const ImplementorPage = lazy(() => import('./pages/ImplementorPage/'));
 const NoMatchPage = lazy(() => import('./pages/NotFound/NoMatchPage'));
+const DecisionPage = lazy(() => import('./pages/DecisionPage/'));
 
 const Routes = () => {
   return (
@@ -30,10 +31,11 @@ const Routes = () => {
           path="/account"
           render={props => {
             // return APP_TOKEN.notEmpty ? <AuthLayout {...props} /> : <Redirect to="/login" />;
-            return <Account {...props} />;
+            return <AccountPage {...props} />;
           }}
         />
-        <Route path="/approval" component={ApprovalPage} />
+        <Route path="/preparation" component={DecisionPreparePage} />
+        <Route path="/decision" component={DecisionPage} />
         <Route path="/implementor" component={ImplementorPage} />
         <Route component={NoMatchPage} />
       </Switch>
