@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import UserCard from '../Cards/UserCard';
-
+import { APP_AUTH } from '../../api/Constants';
+import { getVariable, updateVariable } from '../SelectionControls/SelectionControls';
 
 const Container = styled.section`
   display: flex;
@@ -66,6 +67,11 @@ export default class DndAssigment extends Component {
     users: PropTypes.array,
   };
 
+  state = {
+    items: [],
+    selected: [],
+  };
+
   id2List = {
     droppable: 'items',
     droppable2: 'selected',
@@ -73,10 +79,25 @@ export default class DndAssigment extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      items: props.users,
-      selected: [],
-    };
+    this.storeApprovers.bind(this);
+  }
+
+  componentDidMount() {
+    const {
+      task: { processInstanceId },
+      users,
+    } = this.props;
+    Promise.resolve()
+      .then(() => getVariable(processInstanceId, 'approvers'))
+      .then(resp => resp.json())
+      .then(({ value }) => {
+        const approvers = (value || '').split(',');
+        console.log('users.filter(u => value.includes(u)', value, users);
+        this.setState({
+          items: users.filter(u => !approvers.includes(u.id)),
+          selected: users.filter(u => approvers.includes(u.id)),
+        });
+      });
   }
 
   getList = id => this.state[this.id2List[id]];
@@ -106,69 +127,74 @@ export default class DndAssigment extends Component {
         destination,
       );
 
-      this.setState({
-        items: result.droppable,
-        selected: result.droppable2,
-      });
+      this.setState(
+        {
+          items: result.droppable,
+          selected: result.droppable2,
+        },
+        this.storeApprovers,
+      );
     }
   };
 
-  storeApprovers(){
-    const approversStr = this.state.selected.join();
-
+  storeApprovers() {
+    const {
+      task: { processInstanceId },
+    } = this.props;
+    const approversStr = this.state.selected.map(user => user.id).join();
+    console.log('this.state.selected.', this.state.selected);
+    console.log('approversStr', approversStr);
+    Promise.resolve()
+      .then(() => getVariable(processInstanceId, 'approvers'))
+      .then(resp => resp.json())
+      .then(({ approvers }) =>
+        updateVariable(
+          approvers || approvers !== '' ? 'PUT' : 'POST',
+          processInstanceId,
+          'approvers',
+          approversStr,
+        ),
+      );
   }
 
   render() {
+    console.log('state', this.state);
     return (
       <Container>
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}>
-                {this.state.items.map((item, index) => {
-                  return <Draggable
-                    key={item.id}
-                    draggableId={item.id}
-                    index={index}>
+              <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+                {this.state.items.map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style
-                        )}>
+                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+                      >
                         <UserCard userName={`${item.firstName} ${item.lastName}`} />
                       </div>
                     )}
                   </Draggable>
-                })}
+                ))}
                 {provided.placeholder}
               </div>
             )}
           </Droppable>
           <Droppable droppableId="droppable2">
             {(provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}>
+              <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                 {this.state.selected.map((item, index) => (
-                  <Draggable
-                    key={item.id}
-                    draggableId={item.id}
-                    index={index}>
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style
-                        )}>
+                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+                      >
                         <UserCard userName={`${item.firstName} ${item.lastName}`} />
                       </div>
                     )}

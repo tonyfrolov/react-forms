@@ -31,12 +31,25 @@ class ApprovalPage extends React.Component {
       .then(json => this.setState({ users: json, loading: false }));
   }
 
+  handleApproversSubmit(){
+    const {
+      task: { id },
+    } = this.state;
+    const { history } = this.props;
+    fetch(`http://127.0.0.1:9988/process-api/runtime/tasks/${id}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...APP_AUTH.getAuthHeader() },
+      body: JSON.stringify({ action: 'complete' }),
+    }).then((resp) => console.log('asd',resp))
+      .then(() => history.push('/account'));
+  }
+
   renderList = () => {
-    const { users } = this.state;
+    const { task, users } = this.state;
     return (
       <div>
         <legend style={{ marginBottom: '10px' }}>Выберите согласующего для решения:</legend>
-        {users && users.length > 0 && <DndAssigment users={users} />}
+        {users && users.length > 0 && <DndAssigment task={task} users={users} />}
       </div>
     );
   };
@@ -78,9 +91,8 @@ class ApprovalPage extends React.Component {
           <FormControl>{this.renderList()}</FormControl>
           <FormControl style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
             <Button
+              onClick={this.handleApproversSubmit.bind(this)}
               style={{ width: '50%' }}
-              component={Link}
-              to="/account"
               variant="contained"
               color="primary"
             >
