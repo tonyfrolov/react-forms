@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Helpers
-import { APP_TOKEN } from './api/Constants';
+import { APP_AUTH } from './api/Constants';
 // Utils
 import PageLoader from './components/PageLoader';
 
@@ -23,18 +23,27 @@ const Routes = () => {
           exact
           path="/login"
           render={props => {
-            return APP_TOKEN.notEmpty ? <Redirect to="/account" /> : <LoginPage {...props} />;
+            return APP_AUTH.notEmpty ? <Redirect to="/account" /> : <LoginPage {...props} />;
           }}
         />
         <Route
           path="/account"
           render={props => {
-            // return APP_TOKEN.notEmpty ? <AuthLayout {...props} /> : <Redirect to="/login" />;
-            return <Account {...props} />;
+            return APP_AUTH.notEmpty ? <Account {...props} /> : <Redirect to="/login" />;
           }}
         />
-        <Route path="/approval" component={ApprovalPage} />
-        <Route path="/implementor" component={ImplementorPage} />
+        <Route
+          path="/approval"
+          render={props => {
+            return APP_AUTH.notEmpty ? <ApprovalPage {...props} /> : <Redirect to="/login" />;
+          }}
+        />
+        <Route
+          path="/implementor"
+          render={props => {
+            return APP_AUTH.notEmpty ? <ImplementorPage {...props} /> : <Redirect to="/login" />;
+          }}
+        />
         <Route component={NoMatchPage} />
       </Switch>
     </Suspense>

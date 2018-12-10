@@ -26,7 +26,7 @@ export default theme => ({
   heading: {
     color: '#002882',
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
     borderBottom: '1px solid #002882',
     marginBottom: '25px',
   },

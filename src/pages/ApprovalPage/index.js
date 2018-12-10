@@ -9,41 +9,41 @@ import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/es/Typography';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 import InputBase from '@material-ui/core/InputBase/InputBase';
+import get from 'lodash.get';
 import UserCard from '../../components/Cards/UserCard';
 import Loader from '../../components/PageLoader';
 import Lorem from '../../components/Lorem';
+import DndAssigment from '../../components/DndAssigment';
 
 import styles, { Container } from './style';
+import { APP_AUTH } from '../../api/Constants';
 
 class ApprovalPage extends React.Component {
-  state = { guys: [], loading: true };
+  state = {
+    users: [],
+    task: get(this, 'props.location.state.task'),
+  };
 
   componentDidMount() {
-    fetch('/jsonDatas/guys.json')
+    fetch('http://127.0.0.1:9988/process-api/identity/users', { headers: APP_AUTH.getAuthHeader() })
       .then(res => res.json())
-      .then(json => this.setState({ guys: json, loading: false }));
+      .then(res => res.data)
+      .then(json => this.setState({ users: json, loading: false }));
   }
 
   renderList = () => {
-    const { guys } = this.state;
+    const { users } = this.state;
     return (
-      <>
+      <div>
         <legend style={{ marginBottom: '10px' }}>Выберите согласующего для решения:</legend>
-        {guys.map(({ userName, appointment, id }) => (
-          <label key={id}>
-            <MenuItem>
-              <Checkbox />
-              <UserCard userName={userName} id={id} appointment={appointment} />
-            </MenuItem>
-          </label>
-        ))}
-      </>
+        {users && users.length > 0 && <DndAssigment users={users} />}
+      </div>
     );
   };
 
   render() {
     const { classes } = this.props;
-    const { guys, loading } = this.state;
+    const { task, loading } = this.state;
 
     if (loading) return <Loader />;
 
@@ -51,17 +51,16 @@ class ApprovalPage extends React.Component {
       <Container>
         <form className={classes.container}>
           <Typography variant="display1" gutterBottom className={classes.heading}>
-            ООО "Ромашка" - Подготовка решения по запросу на кредит
-            {/* Получаем значение выбранной задачи из redux state */}
+            {task.name}
           </Typography>
           <FormControl className={classes.formControls}>
-            <Typography variant="h6" gutterBottom style={{ borderBottom: '1px solid #002882' }}>
-              Запрос на кредит
-              {/* Получаем значение выбранной задачи из redux state */}
-            </Typography>
-            <p style={{ marginBottom: '20px' }}>
-              <Lorem amount={5} />
-            </p>
+            {/*<Typography variant="h6" gutterBottom style={{ borderBottom: '1px solid #002882' }}>*/}
+              {/*Запрос на кредит*/}
+              {/*/!* Получаем значение выбранной задачи из redux state *!/*/}
+            {/*</Typography>*/}
+            {/*<p style={{ marginBottom: '20px' }}>*/}
+              {/*<Lorem amount={5} />*/}
+            {/*</p>*/}
             <label style={{ marginBottom: '20px' }}>
               Решение:
               <InputBase

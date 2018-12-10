@@ -2,9 +2,9 @@ import React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { CardContainer, CardHeader, CardHeaderItem, ItemContainer, ListItem } from './style';
 
-const MiniCard = () => {
-  const fullName = 'Василий Васильевич Васильев';
-  const date = new Date().toLocaleString('ru');
+const MiniCard = props => {
+  const { name, createTime, startTime, assignee } = props.task;
+  const date = new Date(createTime|| startTime).toLocaleString('ru');
   return (
     <CardContainer>
       <CardHeader>
@@ -14,13 +14,13 @@ const MiniCard = () => {
           </SvgIcon>
         </CardHeaderItem>
         <CardHeaderItem>
-          <span>Документ КМ</span>
+          <span>{name}</span>
         </CardHeaderItem>
       </CardHeader>
       <ItemContainer>
-        <ListItem>Стратегия клиента</ListItem>
+        {/*<ListItem></ListItem>*/}
         <ListItem>{date}</ListItem>
-        <ListItem>{fullName}</ListItem>
+        <ListItem>{assignee}</ListItem>
       </ItemContainer>
     </CardContainer>
   );

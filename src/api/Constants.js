@@ -10,22 +10,26 @@ export const API_URL = Config[KEY].API_URL;
 export const AUTH_URL = Config[KEY].AUTH_URL;
 
 // Helpers
-export const APP_TOKEN = {
-  set: ({ token, refreshToken }) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('refresh_token', refreshToken);
+export const APP_AUTH = {
+  set: ({ user, password }) => {
+    localStorage.setItem('user', user);
+    localStorage.setItem('password', password);
   },
   remove: () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('password');
   },
   get: () => ({
-    token: localStorage.getItem('token'),
-    refreshToken: localStorage.getItem('refresh_token'),
+    user: localStorage.getItem('user'),
+    password: localStorage.getItem('password'),
   }),
   get notEmpty() {
-    const cond1 = this.get().token !== null;
-    const cond2 = this.get().token !== '';
+    const cond1 = this.get().user !== null;
+    const cond2 = this.get().user !== '';
     return cond1 && cond2;
+  },
+  getAuthHeader: () => {
+    const { user, password } = APP_AUTH.get();
+    return { Authorization: `Basic ${Buffer.from(`${user}:${password}`).toString('base64')}` };
   },
 };

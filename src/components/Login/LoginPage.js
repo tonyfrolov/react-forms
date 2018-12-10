@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import Snackbar from '@material-ui/core/Snackbar';
 
 // API
-import { APP_TOKEN } from '../../api/Constants';
+import { APP_AUTH } from '../../api/Constants';
 // Components
 import LoginForm from './components/LoginForm';
 
@@ -50,30 +50,11 @@ class LoginPage extends Component {
     if (isFormEmpty) {
       return;
     }
-    try {
-      this.setState({ isLoading: true });
-      // const result = await AuthenticationAPI.onLogin({
-      //   cancelToken: this.isTokenSource.token,
-      //   username: form.username,
-      //   password: form.password,
-      // });
-      this.setState({ isLoading: false });
-      APP_TOKEN.set({
-        token: '',
-        refreshToken: '',
-      });
-      history.push('/account');
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        // console.log('Request canceled', error.message);
-      } else {
-        const { message, errorCode } = error.response.data;
-        if (errorCode === '401') {
-          this.onToggleSnackbar({ message });
-        }
-        this.setState({ isLoading: false });
-      }
-    }
+    APP_AUTH.set({
+      user: form.username,
+      password: form.password,
+    });
+    history.push('/account');
   };
 
   onToggleSnackbar = ({ message = 'Error' }) => {

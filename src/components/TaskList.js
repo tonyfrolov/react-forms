@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import MiniCard from './Cards/MiniCard';
 import Loader from './PageLoader';
+import { APP_AUTH } from '../api/Constants';
 
 // import axios from 'axios';
 // import { connect } from 'react-redux';
@@ -44,29 +45,52 @@ const styles = theme => ({
   },
 });
 
-const renderListItem = ({ item, id, location, classes }) => (
-  <ListItem className={classes.listItem} key={id} button to={location} component={Link}>
-    <MiniCard />
+const renderListItem = (task, id, classes) => (
+  <ListItem
+    className={classes.listItem}
+    key={id}
+    button
+    to={{
+      pathname: task.taskDefinitionKey === 'assignWorker' ? 'implementor' : 'approval',
+      state: { task },
+    }}
+    component={Link}
+  >
+    <MiniCard task={task} />
   </ListItem>
 );
 
 class TaskList extends React.Component {
-  state = { taskItems: [], loading: true };
+  state = { taskItems: [], completedTaskItems: [], loading: true };
 
   componentDidMount() {
-    fetch('/jsonDatas/tasks.json')
+    // fetch('http://127.0.0.1:9988/process-api/runtime/tasks', { headers: APP_AUTH.getAuthHeader() })
+    //   .then(res => res.json())
+    //   .then(res => res.data)
+    //   .then(json => this.setState({ taskItems: json, loading: false }));
+
+    fetch('http://127.0.0.1:9988/process-api/query/tasks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...APP_AUTH.getAuthHeader() },
+      body:  JSON.stringify({candidateOrAssigned: APP_AUTH.get().user}) ,
+    })
       .then(res => res.json())
+      .then(res => res.data)
       .then(json => this.setState({ taskItems: json, loading: false }));
+
+    fetch('http://127.0.0.1:9988/process-api/history/historic-task-instances?finished=true', {
+      headers: APP_AUTH.getAuthHeader(),
+    })
+      .then(res => res.json())
+      .then(res => res.data)
+      .then(json => this.setState({ completedTaskItems: json, loading: false }));
   }
 
   render() {
     const { classes } = this.props;
-    const { taskItems, loading } = this.state;
+    const { taskItems, completedTaskItems, loading } = this.state;
 
     if (loading) return <Loader />;
-
-    const tasksCompleted = taskItems.filter(({ completed }) => completed);
-    const tasksIncompleted = taskItems.filter(({ completed }) => !completed);
 
     return (
       <ListContainer>
@@ -78,9 +102,7 @@ class TaskList extends React.Component {
           }
           className={classes.root}
         >
-          {tasksIncompleted.map(({ item, id }) =>
-            renderListItem({ item, id, location: 'implementor', classes }),
-          )}
+          {taskItems.map((task, id) => renderListItem(task, id, classes))}
         </List>
         <List
           subheader={
@@ -90,9 +112,7 @@ class TaskList extends React.Component {
           }
           className={classes.root}
         >
-          {tasksCompleted.map(({ item, id }) =>
-            renderListItem({ item, id, location: 'approval', classes }),
-          )}
+          {completedTaskItems.map((task, id) => renderListItem(task, id, classes))}
         </List>
       </ListContainer>
     );
