@@ -31,6 +31,9 @@ export default theme => ({
     color: '#fff',
     marginTop: theme.margin * 2,
     marginBottom: theme.margin,
+    '&:hover': {
+      color: '#fff',
+    },
   },
   heading: {
     color: '#002882',

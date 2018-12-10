@@ -5,14 +5,19 @@ import Typography from '@material-ui/core/Typography';
 import TaskList from '../../components/TaskList';
 import styles, { ListContainer } from './style';
 
-const AccountPage = ({ classes }) => {
+const AccountPage = ({
+  classes,
+  addToNavBar,
+}) => {
   return (
     <div className={classes.root}>
       <ListContainer>
         <Typography variant="display1" gutterBottom className={classes.heading}>
           Мои задачи
         </Typography>
-        <TaskList />
+        <TaskList
+        addToNavBar={addToNavBar}
+        />
       </ListContainer>
     </div>
   );

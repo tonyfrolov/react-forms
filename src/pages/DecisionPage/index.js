@@ -22,7 +22,7 @@ class DecisionPreparePage extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes,rollBackNavBar } = this.props;
     const { guys, loading } = this.state;
 
     if (loading) return <Loader />;
@@ -74,6 +74,7 @@ class DecisionPreparePage extends React.Component {
             <Button
               style={{ width: '30%', marginRight: '20px' }}
               component={Link}
+              onClick={() => rollBackNavBar(0)}
               to="/account"
               variant="contained"
               color="primary"
@@ -83,6 +84,7 @@ class DecisionPreparePage extends React.Component {
             <Button
               style={{ width: '30%' }}
               component={Link}
+              onClick={() => rollBackNavBar(0)}
               to="/account"
               variant="contained"
               color="primary"

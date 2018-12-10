@@ -15,7 +15,7 @@ const ImplementorPage = lazy(() => import('./pages/ImplementorPage/'));
 const NoMatchPage = lazy(() => import('./pages/NotFound/NoMatchPage'));
 const DecisionPage = lazy(() => import('./pages/DecisionPage/'));
 
-const Routes = () => {
+const Routes = ({ addToNavBar, rollBackNavBar }) => {
   return (
     <Suspense fallback={<PageLoader />}>
       <Switch>
@@ -30,13 +30,19 @@ const Routes = () => {
         <Route
           path="/account"
           render={props => {
-            // return APP_TOKEN.notEmpty ? <AuthLayout {...props} /> : <Redirect to="/login" />;
-            return <AccountPage {...props} />;
+            // return APP_TOKEN.notEmpty ? <AccountPage {...props} /> : <Redirect to="/login" />;
+            return <AccountPage {...props} addToNavBar={addToNavBar} />;
           }}
         />
-        <Route path="/preparation" component={DecisionPreparePage} />
-        <Route path="/decision" component={DecisionPage} />
-        <Route path="/implementor" component={ImplementorPage} />
+        <Route
+          path="/preparation"
+          render={() => <DecisionPreparePage rollBackNavBar={rollBackNavBar} />}
+        />
+        <Route path="/decision" render={() => <DecisionPage rollBackNavBar={rollBackNavBar} />} />
+        <Route
+          path="/implementor"
+          render={() => <ImplementorPage rollBackNavBar={rollBackNavBar} />}
+        />
         <Route component={NoMatchPage} />
       </Switch>
     </Suspense>

@@ -203,18 +203,26 @@ export default {
           '"Segoe UI Symbol"',
         ].join(','),
         '&:hover': {
+          color: 'fff',
           backgroundColor: '#040c80',
           borderColor: '#040c80',
         },
         '&:active': {
+          color: 'fff',
           boxShadow: 'none',
           backgroundColor: '#040c80',
           borderColor: '#040c80',
         },
         '&:focus': {
+          color: 'fff',
           boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
         },
       },
+    },
+    MuiButtonBase: {
+      root: {
+        color: '#002882',
+      }
     },
   },
   props: {

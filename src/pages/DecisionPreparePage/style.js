@@ -30,4 +30,10 @@ export default theme => ({
     borderBottom: '1px solid #002882',
     marginBottom: '25px',
   },
+  button: {
+    width: '50%',
+    '&:hover': {
+      color: '#fff',
+    },
+  },
 });

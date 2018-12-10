@@ -44,8 +44,22 @@ const styles = theme => ({
   },
 });
 
-const renderListItem = ({ item, id, location, classes }) => (
-  <ListItem className={classes.listItem} key={id} button to={location} component={Link}>
+const renderListItem = ({
+  item,
+  id,
+  location,
+  classes,
+  addToNavBar,
+  // taskNames,
+}) => (
+  <ListItem
+    className={classes.listItem}
+    key={id}
+    button
+    onClick={() => addToNavBar(`${location}`, `${''}taskNameWillBeHere`)}
+    to={location}
+    component={Link}
+  >
     <MiniCard />
   </ListItem>
 );
@@ -60,7 +74,10 @@ class TaskList extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const {
+      classes,
+      addToNavBar,
+    } = this.props;
     const { taskItems, loading } = this.state;
 
     if (loading) return <Loader />;
@@ -79,7 +96,13 @@ class TaskList extends React.Component {
           className={classes.root}
         >
           {tasksIncompleted.map(({ item, id }) =>
-            renderListItem({ item, id, location: 'implementor', classes }),
+            renderListItem({
+              item,
+              id,
+              location: 'implementor',
+              classes,
+              addToNavBar,
+            }),
           )}
         </List>
         <List
@@ -91,7 +114,13 @@ class TaskList extends React.Component {
           className={classes.root}
         >
           {tasksCompleted.map(({ item, id }) =>
-            renderListItem({ item, id, location: 'preparation', classes }),
+            renderListItem({
+              item,
+              id,
+              location: 'preparation',
+              classes,
+              addToNavBar,
+            }),
           )}
         </List>
       </ListContainer>

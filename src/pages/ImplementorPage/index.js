@@ -17,7 +17,7 @@ class ImplementorPage extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, rollBackNavBar } = this.props;
     const { users } = this.state;
 
     return (
@@ -29,6 +29,7 @@ class ImplementorPage extends React.Component {
           <SelectionControls users={users} />
           <Button
             component={Link}
+            onClick={() => rollBackNavBar(0)}
             to="/account"
             variant="contained"
             color="primary"

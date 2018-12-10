@@ -59,10 +59,10 @@ class LoginPage extends Component {
       // });
       this.setState({ isLoading: false });
       APP_TOKEN.set({
-        token: '',
+        token: 'lolito',
         refreshToken: '',
       });
-      history.push('/account');
+      history.push('/account', { lolitoCarmelito: '5555' });
     } catch (error) {
       if (axios.isCancel(error)) {
         // console.log('Request canceled', error.message);

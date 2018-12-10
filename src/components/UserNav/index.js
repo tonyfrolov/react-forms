@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { APP_TOKEN } from '../../api/Constants';
 
 const Container = styled.div`
   display: flex;
@@ -36,10 +37,11 @@ const UserNav = props => {
   const { fullName } = props;
   return (
     <Container>
-      <AvatarLink href="#" title="avatar">
+      <AvatarLink onClick={() => APP_TOKEN.remove()} href="#" title="avatar">
         {/* <img src="#" alt="avatar" /> */}В
       </AvatarLink>
       <UserName>{fullName}</UserName>
+      {/*<Logout />*/}
     </Container>
   );
 };
