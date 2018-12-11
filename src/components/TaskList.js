@@ -51,7 +51,7 @@ const renderListItem = (task, id, classes) => (
     key={id}
     button
     to={{
-      pathname: task.taskDefinitionKey === 'assignWorker' ? 'implementor' : 'approval',
+      pathname: task.taskDefinitionKey === 'assignWorker' ? 'implementor' : (task.taskDefinitionKey === 'prepareDoc' ? 'approvers-selection' : 'approval'),
       state: { task },
     }}
     component={Link}

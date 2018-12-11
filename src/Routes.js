@@ -10,6 +10,7 @@ import PageLoader from './components/PageLoader';
 // Routes
 const Account = lazy(() => import('./pages/AccountPage/'));
 const LoginPage = lazy(() => import('./components/Login/LoginPage'));
+const ApproversSelectionPage = lazy(() => import('./pages/ApproversSelectionPage/'));
 const ApprovalPage = lazy(() => import('./pages/ApprovalPage/'));
 const ImplementorPage = lazy(() => import('./pages/ImplementorPage/'));
 const NoMatchPage = lazy(() => import('./pages/NotFound/NoMatchPage'));
@@ -30,6 +31,12 @@ const Routes = () => {
           path="/account"
           render={props => {
             return APP_AUTH.notEmpty ? <Account {...props} /> : <Redirect to="/login" />;
+          }}
+        />
+        <Route
+          path="/approvers-selection"
+          render={props => {
+            return APP_AUTH.notEmpty ? <ApproversSelectionPage {...props} /> : <Redirect to="/login" />;
           }}
         />
         <Route

@@ -18,7 +18,7 @@ import DndAssigment from '../../components/DndAssigment';
 import styles, { Container } from './style';
 import { APP_AUTH } from '../../api/Constants';
 
-class ApprovalPage extends React.Component {
+class ApproversSelectionPage extends React.Component {
   state = {
     users: [],
     task: get(this, 'props.location.state.task'),
@@ -31,7 +31,7 @@ class ApprovalPage extends React.Component {
       .then(json => this.setState({ users: json, loading: false }));
   }
 
-  handleApprovalSubmit(){
+  handleApproversSubmit(){
     const {
       task: { id },
     } = this.state;
@@ -43,6 +43,16 @@ class ApprovalPage extends React.Component {
     }).then((resp) => console.log('asd',resp))
       .then(() => history.push('/account'));
   }
+
+  renderList = () => {
+    const { task, users } = this.state;
+    return (
+      <div>
+        <legend style={{ marginBottom: '10px' }}>Выберите согласующего для решения:</legend>
+        {users && users.length > 0 && <DndAssigment task={task} users={users} />}
+      </div>
+    );
+  };
 
   render() {
     const { classes } = this.props;
@@ -57,6 +67,13 @@ class ApprovalPage extends React.Component {
             {task.name}
           </Typography>
           <FormControl className={classes.formControls}>
+            {/*<Typography variant="h6" gutterBottom style={{ borderBottom: '1px solid #002882' }}>*/}
+              {/*Запрос на кредит*/}
+              {/*/!* Получаем значение выбранной задачи из redux state *!/*/}
+            {/*</Typography>*/}
+            {/*<p style={{ marginBottom: '20px' }}>*/}
+              {/*<Lorem amount={5} />*/}
+            {/*</p>*/}
             <label style={{ marginBottom: '20px' }}>
               Решение:
               <InputBase
@@ -71,14 +88,15 @@ class ApprovalPage extends React.Component {
               />
             </label>
           </FormControl>
+          <FormControl>{this.renderList()}</FormControl>
           <FormControl style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
             <Button
-              onClick={this.handleApprovalSubmit.bind(this)}
+              onClick={this.handleApproversSubmit.bind(this)}
               style={{ width: '50%' }}
               variant="contained"
               color="primary"
             >
-              Согласовать
+              Отправить на согласование
             </Button>
           </FormControl>
         </form>
@@ -87,8 +105,8 @@ class ApprovalPage extends React.Component {
   }
 }
 
-ApprovalPage.propTypes = {
+ApproversSelectionPage.propTypes = {
   classes: PropTypes.object, // Material UI Injecte
 };
 
-export default withStyles(styles)(ApprovalPage);
+export default withStyles(styles)(ApproversSelectionPage);
