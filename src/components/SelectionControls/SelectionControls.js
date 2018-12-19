@@ -64,7 +64,7 @@ class SelectionControls extends React.Component {
     const { users, classes } = this.props;
     const { selectedValue } = this.state;
 
-    return users.map(({ firstName, lastName, appointment, id }) => (
+    return users.map(({ firstName, lastName, pictureUrl, appointment, id }) => (
       <label key={id}>
         <MenuItem className={classes.menuItem} value="Вася">
           <Radio
@@ -74,7 +74,7 @@ class SelectionControls extends React.Component {
             name="radio-button-demo"
             aria-label="A"
           />
-          <UserCard id={id} userName={`${firstName} ${lastName}`} appointment={appointment} />
+          <UserCard id={id} userName={`${firstName} ${lastName}`} pictureUrl={pictureUrl} />
         </MenuItem>
       </label>
     ));

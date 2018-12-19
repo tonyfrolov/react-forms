@@ -60,6 +60,7 @@ const getListStyle = isDraggingOver => ({
   border: isDraggingOver ? '1px solid #002882' : '1px solid #ced4da',
   padding: grid,
   width: 250,
+  marginRight: '15px',
 });
 
 export default class DndAssigment extends Component {
@@ -92,7 +93,6 @@ export default class DndAssigment extends Component {
       .then(resp => resp.json())
       .then(({ value }) => {
         const approvers = (value || '').split(',');
-        console.log('users.filter(u => value.includes(u)', value, users);
         this.setState({
           items: users.filter(u => !approvers.includes(u.id)),
           selected: users.filter(u => approvers.includes(u.id)),
@@ -142,8 +142,6 @@ export default class DndAssigment extends Component {
       task: { processInstanceId },
     } = this.props;
     const approversStr = this.state.selected.map(user => user.id).join();
-    console.log('this.state.selected.', this.state.selected);
-    console.log('approversStr', approversStr);
     Promise.resolve()
       .then(() => getVariable(processInstanceId, 'approvers'))
       .then(resp => resp.json())
@@ -174,7 +172,7 @@ export default class DndAssigment extends Component {
                         {...provided.dragHandleProps}
                         style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                       >
-                        <UserCard userName={`${item.firstName} ${item.lastName}`} />
+                        <UserCard userName={`${item.firstName} ${item.lastName}`} pictureUrl={item.pictureUrl} />
                       </div>
                     )}
                   </Draggable>
@@ -195,7 +193,7 @@ export default class DndAssigment extends Component {
                         {...provided.dragHandleProps}
                         style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                       >
-                        <UserCard userName={`${item.firstName} ${item.lastName}`} />
+                        <UserCard userName={`${item.firstName} ${item.lastName}`} pictureUrl={item.pictureUrl} />
                       </div>
                     )}
                   </Draggable>

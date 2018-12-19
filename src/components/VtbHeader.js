@@ -57,7 +57,7 @@ class VtbHeader extends React.Component {
 
   render() {
     const {
-      userProfile: { firstName, lastName },
+      userProfile: { firstName, lastName, pictureUrl },
     } = this.state;
     return APP_AUTH.notEmpty ? (
       <Header>
@@ -66,7 +66,7 @@ class VtbHeader extends React.Component {
         </a>
 
         <UserNavContainer>
-          <UserNav fullName={`${firstName} ${lastName}`} />
+          <UserNav fullName={`${firstName} ${lastName}`} pictureUrl={pictureUrl} />
         </UserNavContainer>
 
         <IconButton onClick={this.handleLogout.bind(this)}>

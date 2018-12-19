@@ -89,7 +89,7 @@ class ApproversSelectionPage extends React.Component {
             </label>
           </FormControl>
           <FormControl>{this.renderList()}</FormControl>
-          <FormControl style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+          <FormControl style={{ display: 'flex', alignItems: 'center', width: '100%', paddingTop: '15px' }}>
             <Button
               onClick={this.handleApproversSubmit.bind(this)}
               style={{ width: '50%' }}
